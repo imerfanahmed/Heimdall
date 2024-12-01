@@ -15,6 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css">
+        @livewireStyles
 
     </head>
     <body class="font-sans antialiased">
@@ -30,11 +31,15 @@
                 </header>
             @endif
 
-            <!-- Page Content -->
-            <main class="container-xl">
-                {{ $slot }}
-            </main>
+            <div class="page-wrapper">
+                <!-- Page body -->
+                <div class="page-body">
+                    {{$slot}}
+                </div>
+            </div>
+
         </div>
+        @livewireScripts
         <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
     </body>
 </html>
