@@ -20,5 +20,6 @@ class App extends Model
         'max_backend_events_per_sec',
         'max_client_events_per_sec',
         'max_read_req_per_sec',
+        'webhooks',
     ];
 }
