@@ -1,4 +1,4 @@
-<div class="page-body">
+<div wire:ignore class="page-body">
     <div class="container-xl">
         <div class="card">
             <div class="row g-0">
@@ -78,12 +78,14 @@
                 <div class="col-12 col-md-9 d-flex flex-column">
                     <div class="card-body">
                         <div class="mb-3">
-                            <h1 class="page-title
-                            ">
-                                Debug
-                            </h1>
+                            <h1 class="page-title">Debug</h1>
+                            <a class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#createEvent">
+                                <i class="ti ti-plus"></i>
+                                Create Event
+                            </a>
                             <div class="m-2">
                                 <form class="row">
+
                                     <div class="mb-3 col-3">
                                         <label class="form-label">Soketi Host</label>
                                         <input type="text" class="form-control" name="host" value="{{config('soketi.host')}}"/>
@@ -117,6 +119,42 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-blur fade" id="createEvent" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal-new-app">Create Event</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form wire:submit="createEvent">
+                    <div class="modal-body row ">
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Channel Name</label>
+                            <input wire:model="channel" type="text" class="form-control" name="channel" placeholder="channel">
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label class="form-label">Event Name</label>
+                            <input wire:model="event" type="text" class="form-control" name="eventName" placeholder="subscribe">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Data</label>
+                            <textarea class="form-control" wire:model="data" name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div>
+                            @error('appName') <span class="error">{{ $message }}</span> @enderror
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create App</button>
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
