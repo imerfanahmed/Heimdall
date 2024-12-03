@@ -1,4 +1,29 @@
-<div class="container-xl" wire:ignore>
+<div class="container-xl">
+
+{{--    <div class="mx-2 row g-3 align-items-center">--}}
+{{--        <div class="col-auto">--}}
+{{--                <span class="status-indicator status-{{$pusherReachable?'green':'red'}} status-indicator-animated">--}}
+{{--                  <span class="status-indicator-circle"></span>--}}
+{{--                  <span class="status-indicator-circle"></span>--}}
+{{--                  <span class="status-indicator-circle"></span>--}}
+{{--                </span>--}}
+{{--        </div>--}}
+{{--        <div class="col">--}}
+{{--            <h2 class="page-title">--}}
+{{--                Soketi Status--}}
+{{--            </h2>--}}
+{{--            <div class="text-secondary">--}}
+{{--                <ul class="list-inline list-inline-dots mb-0">--}}
+{{--                    @if($pusherReachable)--}}
+{{--                        <li class="list-inline-item"><span class="text-green">Up</span></li>--}}
+{{--                    @else--}}
+{{--                        <li class="list-inline-item"><span class="text-red">Down</span></li>--}}
+{{--                    @endif--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+
     <div class="col-auto ms-auto d-print-none">
         <div class="btn-list">
             <a class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#exampleModal">

@@ -10,6 +10,7 @@ class App extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'name',
         'key',
         'secret',
