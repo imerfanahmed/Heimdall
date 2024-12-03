@@ -17,15 +17,15 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('trigger',function (){
         $options = array(
-            'encrypted' => false,
-            'scheme' => 'http',
-            'host' => '127.0.0.1',
-            'port' => 6001,
+            'encrypted' => config('soketi.scheme') === 'https',
+            'scheme' => config('soketi.scheme'),
+            'host' => config('soketi.host'),
+            'port' => config('soketi.port'),
         );
         $pusher = new Pusher\Pusher(
-            'dolor',
-            'iure',
-            '721328',
+            'sapiente',
+            'aperiam',
+            '70',
             $options,
         );
         $data = [

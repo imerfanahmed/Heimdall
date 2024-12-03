@@ -53,6 +53,14 @@ class Dashboard extends Component
 
     }
 
+    public function deleteApp($id): void
+    {
+        $app = \App\Models\App::find($id);
+        $app->delete();
+        $this->redirect(route('dashboard'));
+    }
+
+
     public function render()
     {
         return view('livewire.dashboard');

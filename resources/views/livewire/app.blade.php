@@ -55,7 +55,7 @@
                                     <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/>
                                 </svg>
                                 Configuration</a>
-                            <a wire:navigate href="{{route('app.debug',[$id])}}" class="list-group-item list-group-item-action d-flex
+                            <a  href="{{route('app.debug',[$id])}}" class="list-group-item list-group-item-action d-flex
                             align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 icon

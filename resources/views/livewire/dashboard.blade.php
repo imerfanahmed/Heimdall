@@ -1,29 +1,4 @@
 <div class="container-xl">
-
-{{--    <div class="mx-2 row g-3 align-items-center">--}}
-{{--        <div class="col-auto">--}}
-{{--                <span class="status-indicator status-{{$pusherReachable?'green':'red'}} status-indicator-animated">--}}
-{{--                  <span class="status-indicator-circle"></span>--}}
-{{--                  <span class="status-indicator-circle"></span>--}}
-{{--                  <span class="status-indicator-circle"></span>--}}
-{{--                </span>--}}
-{{--        </div>--}}
-{{--        <div class="col">--}}
-{{--            <h2 class="page-title">--}}
-{{--                Soketi Status--}}
-{{--            </h2>--}}
-{{--            <div class="text-secondary">--}}
-{{--                <ul class="list-inline list-inline-dots mb-0">--}}
-{{--                    @if($pusherReachable)--}}
-{{--                        <li class="list-inline-item"><span class="text-green">Up</span></li>--}}
-{{--                    @else--}}
-{{--                        <li class="list-inline-item"><span class="text-red">Down</span></li>--}}
-{{--                    @endif--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
     <div class="col-auto ms-auto d-print-none">
         <div class="btn-list">
             <a class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -35,14 +10,18 @@
     <div class="row">
         @foreach($apps as $app)
             <div class="col-md-3 my-2"  wire:key="app-{{ $app->id }}">
-                <a class="card card-link card-link-rotate" wire:navigate href="{{route('app',[$app->id])}}" wire:key="app-{{ $app->id }}">
-                    <div class="card-header">
+                <a class="card card-link card-link-rotate" >
+                    <div class="card-header justify-content-between">
                         <h1 class="card-title">
                             <i class="ti ti-id-badge"></i>
                             Name : {{ $app->name }}
                         </h1>
+                        <button wire:click="deleteApp({{$app->id}})">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="red"
+                                  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                        </button>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" wire:navigate href="{{route('app',[$app->id])}}" wire:key="app-{{ $app->id }}">
                         <div class="">
                             <div>
                                 <i class="ti ti-id"></i>

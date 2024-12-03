@@ -14,6 +14,7 @@ class Debug extends Component
         $this->app = \App\Models\App::find($this->id);
     }
 
+
     public function render()
     {
         return view('livewire.debug');

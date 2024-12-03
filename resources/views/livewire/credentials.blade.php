@@ -88,9 +88,9 @@
 PUSHER_APP_ID = {{ $app->id }}
 PUSHER_APP_KEY = {{ $app->key }}
 PUSHER_APP_SECRET = {{ $app->secret }}
-PUSHER_HOST = {{env('SOKETI_HOST')}}
-PUSHER_PORT = {{env('SOKETI_PORT')}}
-PUSHER_SCHEME= {{config('soketi.soketi_scheme')}}
+PUSHER_HOST = {{config('soketi.host')}}
+PUSHER_PORT = {{config('soketi.port')}}
+PUSHER_SCHEME= {{config('soketi.scheme')}}
 </code></pre>
 
 

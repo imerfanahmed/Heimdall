@@ -86,16 +86,16 @@
                                 <form class="row">
                                     <div class="mb-3 col-3">
                                         <label class="form-label">Soketi Host</label>
-                                        <input type="text" class="form-control" name="host" value="127.0.0.1"/>
+                                        <input type="text" class="form-control" name="host" value="{{config('soketi.host')}}"/>
                                     </div>
                                     <div class="mb-3 col-2">
                                         <label class="form-label">Port</label>
-                                        <input type="text" class="form-control" name="port" value="6001"/>
+                                        <input type="text" class="form-control" name="port" value="{{config('soketi.port')}}"/>
                                     </div>
 
                                     <div class="mb-3 col-2">
                                         <label class="form-label">Scheme</label>
-                                        <input type="text" class="form-control" name="scheme" value="http"/>
+                                        <input type="text" class="form-control" name="scheme" value="{{config('soketi.scheme')}}"/>
                                     </div>
 
                                     <div class="mb-3 col-2">
@@ -129,8 +129,8 @@
         const port = document.querySelector('input[name="port"]').value;
         const scheme = document.querySelector('input[name="scheme"]').value;
         const channel = document.querySelector('input[name="channel"]').value;
-        const appkey = document.querySelector('input[name="app-key"]').value;
-        const pusher = new Pusher(appkey, {
+        const appKey = document.querySelector('input[name="app-key"]').value;
+        const pusher = new Pusher(appKey, {
             wsHost: host,
             wssPort: port,
             wsPort: port,
