@@ -80,13 +80,20 @@
                         <div>
                             <div class="card-header d-flex justify-content-between">
                                 <h3 class="card-title">App Overview</h3>
-                                <div class="div">
-                                    <h3 class="h3 text-{{$app->enabled?"green":"danger"}}">
-                                        App {{$app->enabled?"Enabled":"Disabled"}}
-                                    </h3>
-                                    <smal>
-                                        Created: {{$app->created_at->diffForHumans()}}
-                                    </smal>
+                                <div>
+                                    <label class="form-check form-switch">
+                                        <input wire:click="toggleAppEnable" class="form-check-input" type="checkbox"
+                                        @checked($app->enabled)>
+                                        <span class="form-check-label">
+                                           <h3 class="h3 text-{{$app->enabled?"green":"danger"}}">
+                                                App {{$app->enabled?"Enabled":"Disabled"}}
+                                            </h3>
+                                            <small>
+                                                Created: {{$app->created_at->diffForHumans()}}
+                                            </small>
+                                        </span>
+                                    </label>
+
                                 </div>
                             </div>
                             <div class="card-body">

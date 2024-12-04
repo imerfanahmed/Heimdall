@@ -13,6 +13,14 @@ class App extends Component
     {
         $this->app = \App\Models\App::find($id);
     }
+
+
+    public function toggleAppEnable(): void
+    {
+        $this->app->update([
+            'enabled' => !$this->app->enabled
+        ]);
+    }
     public function render()
     {
         return view('livewire.app');
