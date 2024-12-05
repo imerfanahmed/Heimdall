@@ -23,13 +23,19 @@ class App extends Model
         'webhooks',
     ];
 
-    public function getWebhooksAttribute($value)
+    protected $casts = [
+        'webhooks' => 'array',
+    ];
+
+    //automatically set user id to the current user
+
+    public static function boot()
     {
-        return json_decode($value);
+        parent::boot();
+        static::creating(function ($model) {
+            $model->created_by = auth()->id();
+        });
     }
 
-    public function setWebhooksAttribute($value): void
-    {
-        $this->attributes['webhooks'] = json_encode($value);
-    }
+
 }

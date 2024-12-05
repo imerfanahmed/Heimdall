@@ -1,54 +1,46 @@
 <div class="container-xl">
-    <div class="row my-3">
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4>
-                        Total Apps
-                    </h4>
-                    <h1>
-                        5
-                    </h1>
+        <div class="row my-3">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            Total Apps
+                        </h4>
+                        <h1>
+                            5
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            Active Apps
+                        </h4>
+                        <h1>
+                            3
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            Inactive Apps
+                        </h4>
+                        <h1>
+                            2
+                        </h1>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4>
-                        Active Apps
-                    </h4>
-                    <h1>
-                        3
-                    </h1>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4>
-                        Inactive Apps
-                    </h4>
-                    <h1>
-                        2
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
         <div class="col-auto ms-auto d-print-none">
             <div class="btn-list">
-                <a class="btn btn-primary btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <a class="btn btn-primary btn" data-bs-toggle="modal"
+                   data-bs-target="#exampleModal">
                     <i class="ti ti-plus"></i>
                     Create New App
                 </a>
@@ -102,31 +94,32 @@
 
         </div>
 
-    <div class="modal modal-blur fade" id="exampleModal" tabindex="-1" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="modal-new-app">New App</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <div class="modal modal-blur fade" id="exampleModal" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modal-new-app">New App</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form wire:submit="saveApp">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">App Name</label>
+                                <input wire:model="appName" type="text" class="form-control" name="example-text-input" placeholder="any-name">
+                            </div>
+                            <div>
+                                @error('appName') <span class="error">{{ $message }}</span> @enderror
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create App</button>
+                        </div>
+
+                    </form>
                 </div>
-                <form wire:submit="saveApp">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">App Name</label>
-                            <input wire:model="appName" type="text" class="form-control" name="example-text-input" placeholder="any-name">
-                        </div>
-                        <div>
-                            @error('appName') <span class="error">{{ $message }}</span> @enderror
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create App</button>
-                    </div>
-
-                </form>
             </div>
         </div>
-    </div>
 </div>

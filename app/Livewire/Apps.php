@@ -21,9 +21,11 @@ class Apps extends Component
             'name' => $this->appName,
             'key' => Str::random(15),
             'secret' => Str::random(15),
+            'webhooks' => [],
         ]);
 
         Toaster::success('App created successfully');
+        $this->redirect(route('apps'));
 
     }
 
