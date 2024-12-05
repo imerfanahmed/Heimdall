@@ -22,4 +22,14 @@ class App extends Model
         'max_read_req_per_sec',
         'webhooks',
     ];
+
+    public function getWebhooksAttribute($value)
+    {
+        return json_decode($value);
+    }
+
+    public function setWebhooksAttribute($value): void
+    {
+        $this->attributes['webhooks'] = json_encode($value);
+    }
 }

@@ -7,6 +7,7 @@ Route::view('/', 'welcome');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/apps', \App\Livewire\Apps::class)->name('apps');
     Route::get('/app/{id}', \App\Livewire\App::class)->name('app');
     Route::get('/app/{id}/credentials', \App\Livewire\Credentials::class)->name('app.credentials');
     Route::get('/app/{id}/configuration', \App\Livewire\Credentials::class)->name('app.configuration');

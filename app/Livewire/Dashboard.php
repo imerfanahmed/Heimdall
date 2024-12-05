@@ -2,64 +2,51 @@
 
 namespace App\Livewire;
 
+use Illuminate\Http\Client\Pool;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Number;
 use Livewire\Component;
-use Faker\Factory;
 
 class Dashboard extends Component
 {
-    public $apps;
-    public $appName;
-    public $pusherReachable;
 
-    public function isPusherReachable(): void
+    public $serverStartedAt;
+    public $usedMemory;
+    public $totalMemory;
+    public $memoryUsage;
+    public $totalOpenConnections;
+    public $isSoketiRunning;
+
+    public function boot()
     {
-        $url = 'http://127.0.0.1:6001/'; // Replace with your Pusher app URL
-
         try {
-            $response = Http::get($url);
+            $isServerUp = Http::timeout(5)->get(config('soketi.url'));
+            $responses = Http::pool(fn(Pool $pool) => [
+                $pool->timeout(2)->get(config('soketi.usage_url')),
+                $pool->timeout(2)->get(config('soketi.metrics_url')),
+            ]);
+            $usageResponse   = json_decode($responses[0]->body())->memory;
+            $metrics         = $responses[1];
 
-            if ($response->ok()) {
-                $this->pusherReachable = true; // Pusher server is reachable
-            } else {
-                $this->pusherReachable = false; // Server responded but not as expected
-            }
+            $this->isSoketiRunning = $isServerUp->status() === 200;
+
+            $soketiProcessRuntime  = parse_prometheus('soketi_process_start_time_seconds', $metrics->body());
+            $this->serverStartedAt = now()->subSeconds(time() - $soketiProcessRuntime->pluck('value')[0])->diffForHumans();
+
+            $this->totalMemory = Number::fileSize($usageResponse->total);
+            $this->usedMemory  = Number::fileSize($usageResponse->used);
+            $this->memoryUsage = round($usageResponse->percent, 2);
+
+            $this->totalOpenConnections = parse_prometheus('soketi_connected', $metrics->body())->pluck('value')->sum();
         } catch (\Exception $e) {
-            // Handle connection failure
-            $this->pusherReachable = false;
+            $this->isSoketiRunning      = false;
+            $this->serverStartedAt      = 'N/A';
+            $this->totalMemory          = 'N/A';
+            $this->usedMemory           = 'N/A';
+            $this->memoryUsage          = 0;
+            $this->totalOpenConnections = 0;
         }
     }
-
-    public function boot(): void
-    {
-//        $this->isPusherReachable();
-        $this->apps = \App\Models\App::all();
-    }
-
-    public function saveApp(): void
-    {
-        $this->validate([
-            'appName' => 'required|min:6'
-        ]);
-
-        $app = \App\Models\App::create([
-            'id' => Factory::create()->randomNumber(),
-            'name' => $this->appName,
-            'key' => Factory::create()->word,
-            'secret' => Factory::create()->word
-        ]);
-
-        $this->redirect(route('dashboard'));
-
-    }
-
-    public function deleteApp($id): void
-    {
-        $app = \App\Models\App::find($id);
-        $app->delete();
-        $this->redirect(route('dashboard'));
-    }
-
 
     public function render()
     {

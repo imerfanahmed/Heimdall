@@ -9,6 +9,7 @@ export default {
         './resources/views/**/*.blade.php',
         "./vendor/livewire/flux-pro/stubs/**/*.blade.php",
         "./vendor/livewire/flux/stubs/**/*.blade.php",
+        './vendor/masmerise/livewire-toaster/resources/views/*.blade.php', // 👈
     ],
 
     theme: {
