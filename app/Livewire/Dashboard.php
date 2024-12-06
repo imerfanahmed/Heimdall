@@ -16,6 +16,7 @@ class Dashboard extends Component
     public $memoryUsage;
     public $totalOpenConnections;
     public $isSoketiRunning;
+    public $connectedApps;
 
     public function boot()
     {
@@ -37,7 +38,10 @@ class Dashboard extends Component
             $this->usedMemory  = Number::fileSize($usageResponse->used);
             $this->memoryUsage = round($usageResponse->percent, 2);
 
-            $this->totalOpenConnections = parse_prometheus('soketi_connected', $metrics->body())->pluck('value')->sum();
+            $connectedMetrics = parse_prometheus('soketi_connected', $metrics->body());
+            $this->connectedApps = $connectedMetrics->toArray();
+            $this->totalOpenConnections = $connectedMetrics->pluck('value')->sum();
+
         } catch (\Exception $e) {
             $this->isSoketiRunning      = false;
             $this->serverStartedAt      = 'N/A';
@@ -45,6 +49,7 @@ class Dashboard extends Component
             $this->usedMemory           = 'N/A';
             $this->memoryUsage          = 0;
             $this->totalOpenConnections = 0;
+            $this->connectedApps        = [];
         }
     }
 

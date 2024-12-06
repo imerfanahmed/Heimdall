@@ -74,27 +74,48 @@
                     </h3>
                 </div>
 
-                <div class="table-responsive">
-                    <table class="table table-vcenter">
-                        <thead>
-                        <tr>
-                            <th>App ID</th>
-                            <th>Total Connections</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>54584848</td>
-                            <td class="text-secondary">
-                                2000
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                @if(!count($connectedApps) or $totalOpenConnections == 0)
+                    <div class="card-body">
+                        <div class="text-center text-muted">
+                            No apps connected yet.
+                        </div>
+                    </div>
+                @else
 
+                    <div class="table-responsive">
+                        <table class="table table-vcenter">
+                            <thead>
+                            <tr>
+                                <th>App ID</th>
+                                <th>App Name</th>
+                                <th>App Key</th>
+                                <th>Total Connections</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @foreach($connectedApps as $apps)
+                                @php
+                                    if (isset($apps['json']['app_id'])){
+                                         $soketiApp = \App\Models\App::where('id',$apps['json']['app_id'])->first();
+                                    }
+                                @endphp
+                                <tr>
+                                    <td>{{$apps['json']['app_id']}}</td>
+                                    <td>{{$soketiApp->name}}</td>
+                                    <td>{{$soketiApp->key}}</td>
+
+                                    <td class="text-secondary">
+                                        {{$apps['value']}}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             </div>
+        </div>
     </div>
-</div>
 
 </div>

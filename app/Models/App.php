@@ -21,20 +21,16 @@ class App extends Model
         'max_client_events_per_sec',
         'max_read_req_per_sec',
         'webhooks',
+        'created_by',
     ];
 
     protected $casts = [
         'webhooks' => 'array',
     ];
 
-    //automatically set user id to the current user
-
-    public static function boot()
+    public function user()
     {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->created_by = auth()->id();
-        });
+        return $this->belongsTo(User::class, 'created_by');
     }
 
 
