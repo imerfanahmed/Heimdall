@@ -22,43 +22,14 @@ class Apps extends Component
         $this->activeApps = $this->apps->where('enabled', true)->count();
         $this->inactiveApps = $this->apps->where('enabled', false)->count();
     }
-    public function saveApp(): void
-    {
-        $app = \App\Models\App::create([
-            'name' => $this->appName,
-            'key' => Str::random(15),
-            'secret' => Str::random(15),
-            'webhooks' => [],
-            'created_by' => auth()->id(),
-        ]);
 
-        if(!$app){
-            Toaster::error('Error creating app');
-            return;
-        }
-
-        Toaster::success('App created successfully');
-        $this->redirect(route('apps'));
-
-    }
 
     public function toggleAppEnable(Ap $app): void
     {
-        //if the app is enabled, disable it
-        if ($app->enabled) {
-            $app->update([
-                'enabled' => false
-            ]);
-            Toaster::success('App disabled successfully');
-            $this->redirect(route('apps'));
-        } //if the app is disabled, enable it
-        else {
-            $app->update([
-                'enabled' => true
-            ]);
-            Toaster::success('App enabled successfully');
-            $this->redirect(route('apps'));
-        }
+        $app->enabled = !$app->enabled;
+        $app->save();
+        Toaster::success('App updated successfully');
+        $this->dispatch('reloadComponent');
     }
 
     public function deleteApp($id): void
@@ -66,8 +37,16 @@ class Apps extends Component
         $app = \App\Models\App::find($id);
         $app->delete();
         Toaster::success('App deleted successfully');
-        $this->redirect(route('apps'));
+        $this->dispatch('reloadComponent');
     }
+
+    protected function getListeners(): array
+    {
+        return [
+            'reloadComponent' => '$refresh',
+        ];
+    }
+
     public function render()
     {
         return view('livewire.apps');

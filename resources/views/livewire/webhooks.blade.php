@@ -68,6 +68,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @dd($app->$webhooks)
                                     @if(is_null($app->webhooks))
                                         <tr>
                                             <td colspan="2">No webhooks found</td>
