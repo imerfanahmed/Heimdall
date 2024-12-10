@@ -11,7 +11,7 @@ return [
     | to set this parameter to true. This includes the modern-normalize css.
     |
     */
-    'include_css'        => false,
+    'include_css' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     | to your script bundler like webpack.
     |
     */
-    'include_js'         => true,
+    'include_js' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -49,5 +49,5 @@ return [
 
         'destroy_on_close' => false,
     ],
-    'default'            => 'bootstrap'
+    'default' => 'bootstrap',
 ];

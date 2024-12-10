@@ -3,18 +3,17 @@
 namespace App\Livewire\Forms;
 
 use Illuminate\Support\Str;
-use Livewire\Attributes\Validate;
-use Livewire\Form;
 use LivewireUI\Modal\ModalComponent;
 use Masmerise\Toaster\Toaster;
 
 class CreateApp extends ModalComponent
 {
     public $appName;
+
     public function saveApp(): void
     {
         $this->validate([
-            'appName' => 'required'
+            'appName' => 'required',
         ]);
         $app = \App\Models\App::create([
             'name' => $this->appName,
@@ -24,8 +23,9 @@ class CreateApp extends ModalComponent
             'created_by' => auth()->id(),
         ]);
 
-        if(!$app){
+        if (! $app) {
             Toaster::error('Error creating app');
+
             return;
         }
 
@@ -35,6 +35,7 @@ class CreateApp extends ModalComponent
         $this->closeModal();
 
     }
+
     public function render()
     {
         return view('livewire.create-app');

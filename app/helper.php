@@ -1,4 +1,5 @@
 <?php
+
 if (! function_exists('parse_prometheus')) {
     function parse_prometheus(string $key, string $metrics): \Illuminate\Support\Collection
     {

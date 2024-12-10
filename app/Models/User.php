@@ -48,6 +48,6 @@ class User extends Authenticatable
 
     public function apps()
     {
-        return $this->hasMany(App::class,'created_by');
+        return $this->hasMany(App::class, 'created_by');
     }
 }

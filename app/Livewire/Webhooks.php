@@ -8,9 +8,13 @@ use Masmerise\Toaster\Toaster;
 class Webhooks extends Component
 {
     public $id;
+
     public $app;
+
     public $webhooks;
+
     public $url;
+
     public $events = [];
 
     public function boot()
@@ -22,22 +26,21 @@ class Webhooks extends Component
     {
         //validate url
         $this->validate([
-            'url' => 'required|url'
+            'url' => 'required|url',
         ]);
         //make url and webhooks array and save
-        $webhook    = [
-            'url'    => $this->url,
-            'event_types' => $this->events
+        $webhook = [
+            'url' => $this->url,
+            'event_types' => $this->events,
         ];
-        $webhooks   = $this->app->webhooks;
+        $webhooks = $this->app->webhooks;
         $webhooks[] = $webhook;
         $this->app->update([
-            'webhooks' => $webhooks
+            'webhooks' => $webhooks,
         ]);
         Toaster::success('Webhook Added'); // 👈
         $this->reset('url', 'events');
     }
-
 
     public function delete($index)
     {
@@ -45,7 +48,7 @@ class Webhooks extends Component
         $webhooks = $this->app->webhooks;
 
         $this->app->update([
-            'webhooks' => $webhooks->except($index)->values()->toArray()
+            'webhooks' => $webhooks->except($index)->values()->toArray(),
         ]);
         Toaster::success('Webhook Deleted'); // 👈
     }

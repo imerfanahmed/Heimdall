@@ -2,19 +2,22 @@
 
 namespace App\Livewire;
 
-use Faker\Factory;
-use Illuminate\Support\Str;
+use App\Models\App as Ap;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
-use App\Models\App as Ap;
 
 class Apps extends Component
 {
     public $apps;
+
     public $appName;
+
     public $totalApps;
+
     public $activeApps;
+
     public $inactiveApps;
+
     public function boot()
     {
         $this->apps = \App\Models\App::all();
@@ -23,10 +26,9 @@ class Apps extends Component
         $this->inactiveApps = $this->apps->where('enabled', false)->count();
     }
 
-
     public function toggleAppEnable(Ap $app): void
     {
-        $app->enabled = !$app->enabled;
+        $app->enabled = ! $app->enabled;
         $app->save();
         Toaster::success('App updated successfully');
         $this->dispatch('reloadComponent');
