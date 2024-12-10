@@ -25,23 +25,17 @@ class Webhooks extends Component
             'url' => 'required|url'
         ]);
         //make url and webhooks array and save
-        $webhook = [
+        $webhook    = [
             'url'    => $this->url,
             'events' => $this->events
         ];
-
-
-        //get webhooks json if the webhook is empty add the webhook to the array
-        $webhooks = $this->app->webhooks;
+        $webhooks   = $this->app->webhooks;
         $webhooks[] = $webhook;
-        //update the app with the new webhooks
         $this->app->update([
             'webhooks' => $webhooks
         ]);
-        //reset the url and events
-        $this->url    = '';
-        $this->events = [];
-        Toaster::success('Webhook Created'); // 👈
+        Toaster::success('Webhook Added'); // 👈
+        $this->reset('url', 'events');
     }
 
 
@@ -49,9 +43,9 @@ class Webhooks extends Component
     {
         //get webhooks json
         $webhooks = $this->app->webhooks;
-        unset($webhooks[$index]);
+
         $this->app->update([
-            'webhooks' => $webhooks
+            'webhooks' => $webhooks->except($index)->values()->toArray()
         ]);
         Toaster::success('Webhook Deleted'); // 👈
     }

@@ -25,7 +25,7 @@ class App extends Model
     ];
 
     protected $casts = [
-        'webhooks' => 'array',
+        'webhooks' => 'collection',
     ];
 
     public function user()

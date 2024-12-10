@@ -68,16 +68,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @dd($app->$webhooks)
-                                    @if(is_null($app->webhooks))
+                                    @if(!$app->webhooks)
                                         <tr>
                                             <td colspan="2">No webhooks found</td>
                                         </tr>
                                     @else
                                         @foreach($app->webhooks as $index=> $webhook)
                                             <tr>
-                                                <td>{{$webhook->url}}</td>
-                                                <td>{{ join(' , ', $webhook->events) }}</td>
+                                                <td>{{$webhook['url']}}</td>
+                                                <td>{{ join(' , ', $webhook['events']) }}</td>
                                                 <td>
                                                     <button wire:click="delete({{$index}})" class="btn btn-sm btn-danger">Delete</button>
                                             </tr>
