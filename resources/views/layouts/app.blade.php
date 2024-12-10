@@ -15,6 +15,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/css/tabler.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
         @livewireStyles
 
     </head>
@@ -44,5 +48,6 @@
         <x-toaster-hub />
         @stack('scripts')
         <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
+        <script>hljs.highlightAll();</script>
     </body>
 </html>

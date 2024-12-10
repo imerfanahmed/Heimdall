@@ -76,7 +76,7 @@
                                         @foreach($app->webhooks as $index=> $webhook)
                                             <tr>
                                                 <td>{{$webhook['url']}}</td>
-                                                <td>{{ join(' , ', $webhook['events']) }}</td>
+                                                <td>{{ join(' , ', $webhook['event_types']) }}</td>
                                                 <td>
                                                     <button wire:click="delete({{$index}})" class="btn btn-sm btn-danger">Delete</button>
                                             </tr>

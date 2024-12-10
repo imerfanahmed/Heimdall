@@ -27,7 +27,7 @@ class Webhooks extends Component
         //make url and webhooks array and save
         $webhook    = [
             'url'    => $this->url,
-            'events' => $this->events
+            'event_types' => $this->events
         ];
         $webhooks   = $this->app->webhooks;
         $webhooks[] = $webhook;
