@@ -118,7 +118,7 @@
                         this.events.push({
                             id: Date.now(),
                             eventName: eventName,
-                            data: eventData ? eventData : 'No data'
+                            data: eventData ? JSON.stringify(eventData): 'No data'
                         });
 
                         // Limit number of events to avoid overloading
