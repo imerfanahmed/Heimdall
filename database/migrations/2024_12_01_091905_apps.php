@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('key', 100);
             $table->string('secret', 100);
             $table->integer('max_connections')->default(-1);
-            $table->boolean('enable_client_messages')->default(true);
+            $table->boolean('enable_client_messages')->default(false);
             $table->boolean('enabled')->default(true);
             $table->integer('max_backend_events_per_sec')->default(-1);
             $table->integer('max_client_events_per_sec')->default(-1);
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->tinyInteger('max_event_name_length')->default(100);
             $table->tinyInteger('max_event_payload_in_kb')->default(100);
             $table->tinyInteger('max_event_batch_size')->default(10);
-            $table->boolean('enable_user_authentication')->default(true);
+            $table->boolean('enable_user_authentication')->default(false);
             $table->integer('created_by');
             $table->timestamps();
         });

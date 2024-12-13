@@ -16,11 +16,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/apps', Apps::class)->name('apps');
     Route::get('/app/{id}', \App\Livewire\App::class)->name('app');
     Route::get('/app/{id}/credentials', Credentials::class)->name('app.credentials');
-    Route::get('/app/{id}/configuration', Credentials::class)->name('app.configuration');
+    Route::get('/app/{id}/configuration', \App\Livewire\Configuration::class)->name('app.configuration');
     Route::get('/app/{id}/webhooks', Webhooks::class)->name('app.webhooks');
     Route::get('/app/{id}/debug', Debug::class)->name('app.debug');
 });
-
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

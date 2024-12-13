@@ -70,7 +70,12 @@
                 @foreach($apps as $app)
                     <tr wire:key="app-{{$app->id }}">
                         <td>{{$app->id}}</td>
-                        <td>{{$app->name}}</td>
+                        <td>
+                            <a wire:navigate.hover href="{{route('app',$app->id)}}">
+                                {{$app->name}}
+                            </a>
+
+                        </td>
                         <td>{{$app->key}}</td>
                         <td>{{$app->secret}}</td>
                         <td>
@@ -86,16 +91,16 @@
                         <td>{{$app->user->name}}</td>
                         <td>{{ $app->created_at->diffForHumans() }}</td>
                         <td>
-                            <button wire:navigate href="{{route('app',[$app->id])}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                     class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"/>
-                                    <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"/>
-                                    <path d="M16 5l3 3"/>
-                                </svg>
-                            </button>
+{{--                            <button wire:navigate href="{{route('app',[$app->id])}}">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"--}}
+{{--                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"--}}
+{{--                                     class="icon icon-tabler icons-tabler-outline icon-tabler-edit">--}}
+{{--                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>--}}
+{{--                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"/>--}}
+{{--                                    <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"/>--}}
+{{--                                    <path d="M16 5l3 3"/>--}}
+{{--                                </svg>--}}
+{{--                            </button>--}}
                             <button wire:click="deleteApp({{$app->id}})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red"
                                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
