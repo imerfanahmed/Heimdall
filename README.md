@@ -39,13 +39,25 @@ It is built with Laravel and Livewire. One step complete solution for your soket
 
 ## Installation
 
-Follow these steps to set up the project locally:
+## Docker
+ download the docker-compose.yml file and run the following command
+```bash
+docker-compose up
+```
+
+## Open heimdall container and run the following commands
+```bash
+php artisan migrate --seed
+```
+
+## Follow these steps to set up the project locally:
 
 1. Clone the repository:
 
 ```bash
 git clone https://github.com/imerfanahmed/Heimdall.git
 ```
+
 
 2. Navigate to the project directory:
 
