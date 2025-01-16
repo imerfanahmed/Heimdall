@@ -103,7 +103,7 @@
                 connect() {
                     // Set up Soketi (Pusher) client for the new channel
                     let pusher = new Pusher('{{$app->key}}', {
-                        wsHost: '{{config('soketi.host')}}',
+                        wsHost: '{{config('broadcasting.connections.pusher.options.host')}}',
                         wssPort: '{{config('soketi.port')}}',
                         wsPort: '{{config('soketi.port')}}',
                         forceTLS: '{{config('soketi.scheme')}}' === 'https',
